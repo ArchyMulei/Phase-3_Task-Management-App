@@ -122,6 +122,7 @@ def add_book():
     session.commit()
     print("Book added successfully!")
 
+# ...
 def update_book_quantity():
     clear_screen()
     console.print("Update Book Quantity", style="bold green")
@@ -138,7 +139,7 @@ def update_book_quantity():
         input("\nPress Enter to continue.")
         return
 
-    book = session.query(Book).get(book_id)
+    book = session.get(Book, book_id)  # Use session.get() here
 
     if book is None:
         print("Book not found. Please enter a valid book ID.")
@@ -159,6 +160,8 @@ def update_book_quantity():
 
     print("Book quantity updated successfully!")
     input("\nPress Enter to return to the main menu.")
+# ...
+
 
 def list_books():
     clear_screen()
