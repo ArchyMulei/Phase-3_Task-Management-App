@@ -6,7 +6,7 @@ The **Bookish BrewBook Store Management** CLI application is designed to provide
 ## Getting Started
 To start using the **Bookish BrewBook Store Management** application, follow these steps:
 
-1. Clone this repository in your terminal by running git clone git@github.com:Kmurll/booksql.git`.
+1. Clone this repository in your terminal by running git clone `git@github.com:Kmurll/booksql.git`.
 2. Cd into the directory cd booksql
 3. Install the necessary dependancie i.e. sqlalchemy, rich
 4. Create a working environment using pipenv shell
