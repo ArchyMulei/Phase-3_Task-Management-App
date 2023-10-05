@@ -160,9 +160,6 @@ def update_book_quantity():
     print("Book quantity updated successfully!")
     input("\nPress Enter to return to the main menu.")
 
-
-
-
 def list_books():
     clear_screen()
     console.print("List Books", style="bold green")
@@ -237,8 +234,8 @@ def process_sale():
     customer_id = int(input("Enter the ID of the customer: "))  # Convert input to integer
     quantity = int(input("Enter the quantity sold: "))  # Convert input to integer
 
-    book = session.query(Book).get(book_id)
-    customer = session.query(Customer).get(customer_id)
+    book = session.get(Book, book_id)
+    customer = session.get(Customer, customer_id)
 
     if book and customer:
         if book.quantity >= quantity:
