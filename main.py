@@ -217,46 +217,53 @@ def process_sale():
     console.print("Process Sale", style="bold green")
     print("-------------------")
 
+    # Display a list of all available books
+    print("Available Books:")
+    books = session.query(Book).all()
+    for book in books:
+        print(f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Price: {book.price}, Quantity: {book.quantity}")
+
     while True:
-        book_id = input("Enter the ID of the book (or 'q' to go back): ")
+        book_id = input("Enter the ID of the book to purchase (or 'q' to go back): ")
 
         if book_id.lower() == "q":
             print("Sale process cancelled.")
             input("\nPress Enter to return to the main menu.")
             return
 
-        if book_id.isdigit():  # Validate input as a digit
+        if book_id.isdigit():
             break
         else:
             print("Invalid input. Please enter a valid book ID or 'q' to go back.")
 
-    book_id = int(book_id)  # Convert input to integer
-    customer_id = int(input("Enter the ID of the customer: "))  # Convert input to integer
-    quantity = int(input("Enter the quantity sold: "))  # Convert input to integer
+    book_id = int(book_id)
+    customer_id = int(input("Enter the ID of the customer: "))
+    quantity = int(input("Enter the quantity sold: "))
 
-    book = session.get(Book, book_id)
-    customer = session.get(Customer, customer_id)
+    book = session.get(Book, book_id)  # Use session.get() instead of session.query().get()
+    customer = session.get(Customer, customer_id)  # Use session.get() instead of session.query().get()
 
     if book and customer:
         if book.quantity >= quantity:
-            # Get the current date
+            total_price = quantity * book.price
             sale_date = datetime.now().date()
 
             sale = Sale(
                 book=book,
                 customer=customer,
                 quantity=quantity,
-                sale_date=sale_date  # Set the sale_date
+                sale_date=sale_date
             )
             session.add(sale)
             book.quantity -= quantity
             session.commit()
-            print("Sale processed successfully!")
+            print(f"Sale processed successfully! Total price: {total_price}")
         else:
             print("Insufficient quantity in stock.")
     else:
         print("Invalid book or customer ID.")
     input("\nPress Enter to return to the main menu.")
+
 
 
 def add_customer():
