@@ -122,7 +122,6 @@ def add_book():
     session.commit()
     print("Book added successfully!")
 
-# ...
 def update_book_quantity():
     clear_screen()
     console.print("Update Book Quantity", style="bold green")
@@ -146,7 +145,7 @@ def update_book_quantity():
         input("\nPress Enter to continue.")
         return
 
-    new_quantity = input("Enter the new quantity: ")
+    new_quantity = input("Enter the quantity to add: ")
 
     try:
         new_quantity = int(new_quantity)  # Convert input to integer
@@ -155,12 +154,13 @@ def update_book_quantity():
         input("\nPress Enter to continue.")
         return
 
-    book.quantity = new_quantity
+    book.quantity += new_quantity  # Increment the existing quantity by the new quantity
     session.commit()
 
     print("Book quantity updated successfully!")
     input("\nPress Enter to return to the main menu.")
-# ...
+
+
 
 
 def list_books():
@@ -275,22 +275,27 @@ def add_customer():
             input("\nPress Enter to return to the main menu.")
             return
 
-        contact = input("Contact: ")
+        contact = input("Contact (must be a number): ")
 
-        if name.strip() != "" and contact.strip() != "":
-            break
+        if name.strip() != "":
+            if contact.isdigit():  # Check if contact consists of digits
+                break  # Break out of the loop if input is valid
+            else:
+                print("Invalid input. Contact must be a number.")
         else:
-            print("Invalid input. Please enter non-empty values for name and contact.")
+            print("Invalid input. Please enter non-empty values for name and a numeric contact.")
 
     customer = Customer(
         name=name,
-        contact=contact
+        contact=contact  # Store contact as a string in the database
     )
     session.add(customer)
     session.commit()
 
     print("Customer added successfully!")
     input("\nPress Enter to return to the main menu.")
+
+
 
 def list_customers():
     clear_screen()
@@ -324,7 +329,7 @@ def delete_customer():
         except ValueError:
             print("Invalid input. Please enter a valid customer ID.")
 
-    customer = session.query(Customer).get(customer_id)
+    customer = session.get(Customer, customer_id)
     if customer:
         session.delete(customer)
         session.commit()
