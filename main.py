@@ -388,7 +388,7 @@ def main():
         elif choice == "11":
             break
 
-    print("Thank you for using the Book Store Management system!")
+    print("Thank you for using Bookish BrewBook Store Management System!")
 
 if __name__ == "__main__":
     main()
