@@ -258,12 +258,17 @@ def process_sale():
             book.quantity -= quantity
             session.commit()
             print(f"Sale processed successfully! Total price: {total_price}")
+
+            # Get the customer's full name by concatenating first_name and last_name
+            customer_name = f"{customer.name}"
+
+            # Display the thank you message
+            print(f"Thanks, {customer_name}, for supporting Bookish BrewBook Store!")
         else:
             print("Insufficient quantity in stock.")
     else:
         print("Invalid book or customer ID.")
     input("\nPress Enter to return to the main menu.")
-
 
 
 def add_customer():
