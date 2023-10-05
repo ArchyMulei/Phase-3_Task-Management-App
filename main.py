@@ -191,9 +191,9 @@ def delete_book():
     clear_screen()
     console.print("Delete Book", style="bold green")
     print("-------------------")
+    
     while True:
-        book_id = input(
-            "Enter the ID of the book to delete (or 'q' to exit): ")
+        book_id = input("Enter the ID of the book to delete (or 'q' to exit): ")
         if book_id.lower() == 'q':
             return  # Cancel the deletion process if 'q' is entered
         try:
@@ -201,16 +201,17 @@ def delete_book():
             break  # Break out of the loop if input is valid
         except ValueError:
             print("Invalid input. Please enter a valid book ID.")
-
-    book = session.query(Book).get(book_id)
+    
+    book = session.get(Book, book_id)  # Use session.get() instead of session.query().get()
     if book:
         session.delete(book)
         session.commit()
         print("Book deleted successfully!")
     else:
         print("Book not found.")
-
+    
     input("\nPress Enter to return to the main menu.")
+
 
 def process_sale():
     clear_screen()
@@ -303,7 +304,6 @@ def add_customer():
 
     print("Customer added successfully!")
     input("\nPress Enter to return to the main menu.")
-
 
 
 def list_customers():
