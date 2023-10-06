@@ -60,17 +60,17 @@ def clear_screen():
 def show_menu():
     clear_screen()
     console.print("Welcome To The Bookish BrewBook Store Management", style="bold green")
-    console.print("1. Add Book", style="bold blue")
-    console.print("2. Update Book Quantity", style="bold blue")
-    console.print("3. List Books", style="bold blue")
-    console.print("4. Delete Book", style="bold blue")
-    console.print("5. Search Books", style="bold blue")
-    console.print("6. Process Sale", style="bold blue")
-    console.print("7. Add Customer", style="bold blue")
-    console.print("8. List Customers", style="bold blue")
-    console.print("9. Delete Customer", style="bold blue")
-    console.print("10. Generate Report", style="bold blue")
-    console.print("11. Quit", style="bold blue")
+    console.print("1. Add Book", style="bold yellow")
+    console.print("2. Update Book Quantity", style="bold yellow")
+    console.print("3. List Books", style="bold yellow")
+    console.print("4. Delete Book", style="bold yellow")
+    console.print("5. Search Books", style="bold yellow")
+    console.print("6. Process Sale", style="bold yellow")
+    console.print("7. Add Customer", style="bold yellow")
+    console.print("8. List Customers", style="bold yellow")
+    console.print("9. Delete Customer", style="bold yellow")
+    console.print("10. Generate Report", style="bold yellow")
+    console.print("11. Quit", style="bold yellow")
 
 def get_valid_choice(prompt, choices):
     while True:
@@ -167,7 +167,7 @@ def list_books():
     books = session.query(Book).all()
     for book in books:
         console.print(
-            f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Genre: {book.genre}, Price: {book.price}, Quantity: {book.quantity}", style="blue")
+            f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Genre: {book.genre}, Price: {book.price}, Quantity: {book.quantity}", style="bold yellow")
     input("\nPress Enter to return to the main menu.")
 
 def search_books():
@@ -182,7 +182,7 @@ def search_books():
     if books:
         for book in books:
             console.print(
-                f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Genre: {book.genre}, Price: {book.price}, Quantity: {book.quantity}", style="blue")
+                f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Genre: {book.genre}, Price: {book.price}, Quantity: {book.quantity}", style="bold yellow")
     else:
         console.print("No books found matching the keyword.", style="bold red")
     input("\nPress Enter to return to the main menu.")
@@ -222,7 +222,7 @@ def process_sale():
     print("Available Books:")
     books = session.query(Book).all()
     for book in books:
-        print(f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Price: {book.price}, Quantity: {book.quantity}")
+        print(f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Price: {book.price}, Quantity: {book.quantity}",)
 
     while True:
         book_id = input("Enter the ID of the book to purchase (or 'q' to go back): ")
@@ -319,7 +319,7 @@ def list_customers():
     else:
         for customer in customers:
             console.print(
-                f"ID: {customer.id}, Name: {customer.name}, Contact: {customer.contact}", style="blue")
+                f"ID: {customer.id}, Name: {customer.name}, Contact: {customer.contact}", style="bold yellow")
 
     input("\nPress Enter to return to the main menu.")
 
