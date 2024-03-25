@@ -200,7 +200,7 @@ def delete_book():
             book_id = int(book_id)  # Convert input to integer
             break  # Break out of the loop if input is valid
         except ValueError:
-            print("Invalid input. Please enter a valid book ID.")
+            print("Invalid input.  Please enter a valid book ID.")
     
     book = session.get(Book, book_id)  # Use session.get() instead of session.query().get()
     if book:
