@@ -8,8 +8,8 @@ To start using the **Bookish BrewBook Store Management** application, follow the
 
 1. Clone this repository in your terminal by running `git clone git@github.com:ArchyMulei/Phase-3_Task-Management-App.git
 `.
-2. Cd into the directory cd booksql
-3. Install the necessary dependancie i.e. sqlalchemy, rich
+2. Run Pipenv install
+3. Install the necessary dependancies i.e. sqlalchemy, rich
 4. Create a working environment using pipenv shell
 5. Open the file using code .
 2. Navigate to the directory where you saved the `main.py` file.
@@ -81,5 +81,4 @@ The total number of sales and the total revenue are displayed.
 ### 11.Quit
 This option exits the Book Store Management System.
 Thank you for using the Book Store Management System!
-
 Tracking tool: https://trello.com/b/zrP13w6j/task-management-application
